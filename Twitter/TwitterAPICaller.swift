@@ -9,6 +9,10 @@
 import UIKit
 import BDBOAuth1Manager
 
+// consumerKey: e4Q3Zo3SAIpTDSW5DKkM9LgXn
+// consumerSecret: X3RSTq2i2ljwKRIEgFYBJTOAoJUx3vNw88wcOKAX9iYeXIKrIj
+// curl "https://api.twitter.com/2/users/by/username/$USERNAME" -H "Authorization: Bearer $ACCESS_TOKEN"
+
 class TwitterAPICaller: BDBOAuth1SessionManager {    
     static let client = TwitterAPICaller(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "e4Q3Zo3SAIpTDSW5DKkM9LgXn", consumerSecret: "X3RSTq2i2ljwKRIEgFYBJTOAoJUx3vNw88wcOKAX9iYeXIKrIj")
     var loginSuccess: (() -> ())?
@@ -53,6 +57,9 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
             success(response as! [NSDictionary])
         }, failure: { (task: URLSessionDataTask?, error: Error) in
             failure(error)
+            print(error.localizedDescription)
+            // print(error)
+
         })
     }
 
